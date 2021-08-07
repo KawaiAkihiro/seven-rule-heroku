@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_05_25_061100) do
 
-  create_table "individual_shifts", charset: "utf8", force: :cascade do |t|
+  create_table "individual_shifts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "start"
     t.datetime "finish"
     t.boolean "temporary", default: false, null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_061100) do
     t.index ["staff_id"], name: "index_individual_shifts_on_staff_id"
   end
 
-  create_table "masters", charset: "utf8", force: :cascade do |t|
+  create_table "masters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "store_name"
     t.string "user_name"
     t.string "password_digest"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_061100) do
     t.date "submits_finish"
   end
 
-  create_table "notices", charset: "utf8", force: :cascade do |t|
+  create_table "notices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "mode"
     t.integer "shift_id"
     t.integer "staff_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_061100) do
     t.index ["master_id"], name: "index_notices_on_master_id"
   end
 
-  create_table "patterns", charset: "utf8", force: :cascade do |t|
+  create_table "patterns", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.time "start"
     t.time "finish"
     t.bigint "staff_id", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_061100) do
     t.index ["staff_id"], name: "index_patterns_on_staff_id"
   end
 
-  create_table "shift_separations", charset: "utf8", force: :cascade do |t|
+  create_table "shift_separations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.time "start_time"
     t.time "finish_time"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_061100) do
     t.index ["master_id"], name: "index_shift_separations_on_master_id"
   end
 
-  create_table "staffs", charset: "utf8", force: :cascade do |t|
+  create_table "staffs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "number"
     t.boolean "training_mode"
