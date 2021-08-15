@@ -4,9 +4,10 @@
             <%= hidden_field_tag 'delete[ingredients][]' %>
             <% @event.each do |event| %>
                 <label>
-                    <%= event.fulltime %>
-                    <%= check_box_tag 'delete[ingredients][]', event.id ,false,id:"delete_#{event.id}" %>
+                    <div class="d-shifts check"><%= check_box_tag 'delete[ingredients][]', event.id ,false,id:"delete_#{event.id}"%></div>
+                    <div class="d-shifts"><%= event.fulltime %></div>
                 </label>
+                <span class="ml-3"></span>
             <% end %>
             <%= f.submit "削除",   class: "btn btn-danger js-event-create-btn" %>
         <% end %>

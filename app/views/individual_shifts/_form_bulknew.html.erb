@@ -6,7 +6,7 @@
         <%= render 'shared/error_messages', object: f.object %>
 
         <div class="form-inline text-left">
-            <p class="wday_title">曜日</p>
+            <p class="wday_title">曜日：</p>
             <%= hidden_field_tag 'wday[ingredients][]' %>
             <% %w(日 月 火 水 木 金 土).each.with_index do |ingredient,i| %>
                 <label class="wday checkbox">
