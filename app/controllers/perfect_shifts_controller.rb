@@ -3,8 +3,6 @@ class PerfectShiftsController < ApplicationController
         #このページで全てのアクションを起こす
         if logged_in? && logged_in_staff?
             @events = current_master.individual_shifts.where(temporary: true)
-        elsif logged_in_staff?
-            @events = current_staff.master.individual_shifts.where(temporary: true)
         elsif logged_in?
             @events = current_master.individual_shifts.where(temporary: true)
         end
