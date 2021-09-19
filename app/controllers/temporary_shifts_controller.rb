@@ -1,5 +1,6 @@
 class TemporaryShiftsController < ApplicationController
-    before_action :logged_in_master
+  require 'date'
+  before_action :logged_in_master
 
   def index
     #このページで全てのアクションを実行していく
@@ -90,6 +91,16 @@ class TemporaryShiftsController < ApplicationController
           shift.save
         end
     end
+
+    #定期的に過去のデータを削除して容量を確保するための対策
+    #2ヶ月前のシフトを削除する
+    reset_shifts = current_master.individual_shifts.where(start: ...Date.today.months_ago(2)).where(temporary: true)
+    if reset_shifts.size > 0
+      reset_shifts.each do |shift|
+        shift.destroy
+      end
+    end
+
     flash[:success] = "シフトが完成しました！従業員の皆さんに共有しましょう！"
     redirect_to root_path
   end
