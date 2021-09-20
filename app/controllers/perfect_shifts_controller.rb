@@ -2,9 +2,9 @@ class PerfectShiftsController < ApplicationController
       def index
         #このページで全てのアクションを起こす
         if logged_in? && logged_in_staff?
-            @events = current_master.individual_shifts.where(temporary: true)
+            @events = current_master.individual_shifts.where(temporary: true).where(start: params[:start]..params[:end])
         elsif logged_in?
-            @events = current_master.individual_shifts.where(temporary: true)
+            @events = current_master.individual_shifts.where(temporary: true).where(start: params[:start]..params[:end])
         end
       end
     

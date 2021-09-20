@@ -4,7 +4,7 @@ class TemporaryShiftsController < ApplicationController
 
   def index
     #このページで全てのアクションを実行していく
-    @events = current_master.individual_shifts.where(temporary: false).where(deletable: false)
+    @events = current_master.individual_shifts.where(temporary: false).where(deletable: false).where(start: params[:start]..params[:end])
   end
   
   def new_shift

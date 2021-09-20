@@ -6,7 +6,7 @@ class IndividualShiftsController < ApplicationController
 
     def index
         #このページで全てのアクションを実行していく
-        @events = current_staff.individual_shifts.where(temporary: false)
+        @events = current_staff.individual_shifts.where(temporary: false).where(start: params[:start]..params[:end])
         @shift_separation = current_staff.master.shift_separations.all
         @submit_start = current_staff.master.submits_start
         @submit_finish = current_staff.master.submits_finish
