@@ -3,7 +3,7 @@ class DeletableShiftsController < ApplicationController
 
     def index
         #このページで全てのアクションを実行していく
-        @events = current_master.individual_shifts.where(temporary: false).where(deletable: true).where(start: params[:start]..params[:end])
+        @events = current_master.individual_shifts.joins(:staff).select('individual_shifts.*, staffs.name, staffs.number, staffs.training_mode').where(temporary: false).where(deletable: true).where(start: params[:start]..params[:end])
     end
 
     #シフト復活のmodal表示
