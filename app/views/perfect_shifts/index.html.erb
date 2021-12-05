@@ -11,7 +11,13 @@
         <div class="button"> 
             <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
             <button type="button" name="name" class="shift btn btn-primary">空きシフトを追加する</button>
-        </div>
+        </div> 
+    <% end %> 
+    <% if logged_in? || logged_in_staff? %>
+        <% if !logged_in? && logged_in_staff? %>
+          <div class="gap-root"></div>
+        <% end %>
+
         <div class="training">
             <p>トレーニング中</p>
         </div>
@@ -51,16 +57,7 @@
         </div>
         <%= javascript_pack_tag 'perfect_shifts/calendar' %>
         <%= javascript_pack_tag 'shared/index' %>
-    <% elsif logged_in_staff? %>
-        <div class='staffs_navi'>
-            <% if current_staff.master.shift_onoff %>
-                <%= link_to "シフトを提出する", individual_shifts_path, class:"btn btn-primary" %>
-                <%= link_to "シフトを確認する", comfirmed_shifts_path, class:"btn btn-danger" %>
-            <% else %>
-                <h1 >シフトは今提出期間ではありません</h1>
-            <% end %>
-        </div>
     <% else %>
         <%= render 'static_pages/how_to_use' %>
     <% end %>
-</div>
+</div>    
