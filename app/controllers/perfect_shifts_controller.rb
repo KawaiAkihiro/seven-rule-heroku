@@ -3,10 +3,18 @@ class PerfectShiftsController < ApplicationController
         #このページで全てのアクションを起こす
         if logged_in? && logged_in_staff?
             @events = current_master.individual_shifts.joins(:staff).select('individual_shifts.*, staffs.name, staffs.number, staffs.training_mode').where(temporary: true).where(start: params[:start]..params[:end])
+            @slot_min_time = current_master.display_min_time || 0
+            @slot_max_time = current_master.display_max_time || 24
         elsif logged_in_staff?
             @events = current_staff.master.individual_shifts.joins(:staff).select('individual_shifts.*, staffs.name, staffs.number, staffs.training_mode').where(temporary: true).where(start: params[:start]..params[:end])
+            @slot_min_time = current_staff.master.display_min_time || 0
+            @slot_max_time = current_staff.master.display_max_time || 24
+            logger.debug(@slot_min_time)
+            logger.debug(@slot_max_time)
         elsif logged_in?
             @events = current_master.individual_shifts.joins(:staff).select('individual_shifts.*, staffs.name, staffs.number, staffs.training_mode').where(temporary: true).where(start: params[:start]..params[:end])
+            @slot_min_time = current_master.display_min_time || 0
+            @slot_max_time = current_master.display_max_time || 24
         end
       end
     

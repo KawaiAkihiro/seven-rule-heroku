@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_061100) do
+ActiveRecord::Schema.define(version: 2021_12_05_111531) do
 
   create_table "individual_shifts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "start"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2021_05_25_061100) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "submits_start"
     t.date "submits_finish"
+    t.integer "display_min_time"
+    t.integer "display_max_time"
   end
 
   create_table "notices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

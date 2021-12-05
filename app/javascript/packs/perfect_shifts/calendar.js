@@ -9,7 +9,9 @@ import '@fullcalendar/timegrid/main.css'
 
 document.addEventListener('turbolinks:load', function() {
     var calendarEl = document.getElementById('calendar');
-
+    var slotMinTime = document.getElementById('slot-min-time').value;
+    var slotMaxTime = document.getElementById('slot-max-time').value;
+    
     var calendar = new Calendar(calendarEl, {
         plugins: [ weekGridPlugin, interactionPlugin, googleCalendarApi ],
         events: '/perfect_shifts.json',
@@ -23,8 +25,8 @@ document.addEventListener('turbolinks:load', function() {
         ],
         locale: 'ja',
         timeZone: 'Asia/Tokyo',
-        slotMinTime: '07:00:00',
-        slotMaxTime: '31:00;00',
+        slotMinTime: `${slotMinTime}:00:00`,
+        slotMaxTime: `${slotMaxTime}:00;00`,
         slotDuration: "01:00:00" ,
         firstDay: 1,
         headerToolbar: {
