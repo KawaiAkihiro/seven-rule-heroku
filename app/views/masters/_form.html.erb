@@ -13,6 +13,14 @@
   <%= f.label :staff_number, "従業員番号" %>
   <%= f.number_field :staff_number, class: 'form-control' %>
 
+  <% if controller.action_name == "edit" %>
+    <%= f.label :display_min_time, "シフト一覧カレンダーの先頭の時刻" %>
+    <%= f.number_field :display_min_time, class: 'form-control' %>
+
+    <%= f.label :display_max_time, "シフト一覧カレンダーの後尾の時刻(24時以降の場合は24足してください 例)深夜1時→25 深夜2時→26)" %>
+    <%= f.number_field :display_max_time, class: 'form-control' %>
+  <% end %>
+
   <%= f.label :password,"パスワード" %>
   <%= f.password_field :password, class: 'form-control' %>
 

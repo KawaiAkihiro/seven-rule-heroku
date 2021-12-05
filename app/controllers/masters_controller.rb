@@ -75,7 +75,7 @@ class MastersController < ApplicationController
 
   def update
     @master = Master.find(params[:id])
-    if @master.update(master_params)
+    if @master.update(master_edit_params)
 
       staff = @master.staffs.find_by(name: @master.user_name)
       staff.number = @master.staff_number
@@ -119,6 +119,10 @@ class MastersController < ApplicationController
   private
     def master_params
       params.require(:master).permit(:store_name, :user_name, :staff_number, :email, :onoff_email, :password, :password_confirmation)
+    end
+
+    def master_edit_params
+      params.require(:master).permit(:store_name, :user_name, :staff_number, :display_min_time, :display_max_time, :email, :onoff_email, :password, :password_confirmation)
     end
 
     def create_staff(master,name, number)
